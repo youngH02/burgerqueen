@@ -25,7 +25,7 @@ public class PrintUtil {
         System.out.println("💰장바구니");
         System.out.println("-".repeat(50));
         //System.out.println("No  상품명          단가    수량      금액");
-        System.out.println("No  상품명          단가    할인금액 소비자가 수량      금액");
+        System.out.println("No  상품명          단가  할인금액   소비자가   수량    금액");
 
         Set<Menu> tmpCart = Cart.getCart().keySet();
         Iterator<Menu> it = tmpCart.iterator();

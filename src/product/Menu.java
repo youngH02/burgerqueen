@@ -66,8 +66,7 @@ public abstract class Menu {
         isDiscount = discount;
     }
 
-    public String getDiscountPrice() {
-        System.out.println(name+isDiscount+id);
+    public String getDiscountPrice() { //할인금액
         if(!isDiscount) return "0원";
         String discount = "";
         discount = DiscountService.getDiscountMenus().get(id).getDiscountRate() +"";
@@ -76,14 +75,14 @@ public abstract class Menu {
         return discount;
     }
 
-    public int getDisCalcultPrice() {
+    public int getDisCalcultPrice() { //소비자가
         if(!isDiscount) return 0;
         int discountMoney = DiscountService.getDiscountMenus().get(id).getDiscountRate();
         String discountType = DiscountService.getDiscountMenus().get(id).getDiscountType();
         int total=price;
-        String discount = "";
 
-        if(discountType.equals("%")) total = price*(100-discountMoney);
+
+        if(discountType.equals("%")) total = price-(price*discountMoney/100);
         else if(discountType.equals("원")) total = price - discountMoney;
 
         if(total < 0) total = 0;

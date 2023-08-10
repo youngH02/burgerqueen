@@ -25,7 +25,7 @@ public class MenuOnSale {
     }
     public static Menu getMenuByID(int id){
         for (Menu menu : allMenu){
-            if(menu.getIndex() == id)  return menu;
+            if(menu.getID() == id)  return menu;
         }
         return null;
     }
