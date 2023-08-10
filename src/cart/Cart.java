@@ -1,4 +1,4 @@
-package Cart;
+package cart;
 
 import product.Menu;
 

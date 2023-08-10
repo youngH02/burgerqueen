@@ -1,7 +1,8 @@
 package board;
 
+import discount.DiscountService;
 import product.*;
-import Cart.*;
+import cart.*;
 
 import java.util.*;
 
@@ -11,10 +12,13 @@ public class MenuBoard {
     static String[] displayCategoryOrder = {"햄버거","사이드","음료","옵션"};
     static Scanner sc = new Scanner(System.in);
 
+
+
+
     public static void viewMenyByCategory(){
         int displayIndex = 1;
         Map<String, String> emoji = Map.of("햄버거","🍔","사이드","🍟","음료","🥤","옵션","🥫");
-        ArrayList<Menu> allMenu = AllMenu.allMenu;
+        ArrayList<Menu> allMenu = MenuOnSale.allMenu;
 
         System.out.println("[🔻] 메뉴");
         System.out.println("-".repeat(20));
@@ -36,7 +40,7 @@ public class MenuBoard {
         System.out.print("메뉴 번호를 입력해주세요. ");
         String selectMenuNum = sc.nextLine();
         int selectNum = Integer.parseInt(selectMenuNum.trim());
-        Menu selectMenu = AllMenu.getMenuByIndex(selectNum);
+        Menu selectMenu = MenuOnSale.getMenuByIndex(selectNum);
         if(selectNum == displayIndex) return; //종료 입력했으면 홈 메뉴판으로 이동
         if( selectMenu != null) {
             System.out.print("[📣] 수량을 입력해 주세요. ");
