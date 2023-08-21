@@ -38,7 +38,7 @@ public class FileUtil {
 
         for(CartItem cart : order.getCart().getCart()){
             stringBuffer.append(String.format("%-15s %6d원 %4d %7d원\n",
-                    cart.getProductName(), cart.getCost(), cart.getCount(), cart.getTotalPrice()));
+                    cart.getProductName(), cart.getRetailPrice(), cart.getCount(), cart.getTotalPrice()));
         }
         stringBuffer.append(PrintUtil.dash)
                 .append(String.format("\n결제 금액 : %d\n", order.getPaymentPrice()));

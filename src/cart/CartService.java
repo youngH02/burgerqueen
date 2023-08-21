@@ -5,12 +5,19 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import delivery.Delivery;
 import product.*;
 import promotion.Promotion;
 
 public class CartService {
     private ArrayList<CartItem> cart = new ArrayList<>(); // 실질적인 장바구니
 
+    public CartService() {
+    }
+
+    public CartService(CartService cartService) {
+        this.cart = (ArrayList<CartItem>) cartService.getCart().clone();
+    }
 
     public boolean isEmpty(){
         return cart.isEmpty();
@@ -39,6 +46,10 @@ public class CartService {
     public void addPromotion(Promotion promotion, int count){
         //System.out.println(promotion.getPromotion_contents()+promotion.getPromotionDiscount());
         cart.add(new CartItem(promotion.getpromotionID(), promotion.getPromotion_contents(), 0,count,promotion.getPromotionDiscount()));
+    }
+
+    public void addDelivery(Delivery delivery){
+        cart.add(new CartItem(delivery.getDeliveryNum(), "[배달]"+String.valueOf(delivery.getDeliveryTypeName()), delivery.getDeliveryPrice() ,1,0));
     }
     public void deleteCart(int index){
         cart.remove(index-1);

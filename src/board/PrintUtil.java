@@ -1,5 +1,6 @@
 package board;
 
+import delivery.Delivery;
 import discount.DiscountPolicy;
 import discount.DiscountService;
 import product.Menu;
@@ -16,13 +17,14 @@ import java.util.Set;
 public class PrintUtil {
 
     static String introString = "\n\n<🍔BugerQueen order.Order Service🍔>\n"+
-            " (1) 메뉴 선택\n (2) 장바구니\n (3) 할인 정보\n (4) 프로그램 종료";
+            " (1) 메뉴 선택\n (2) 장바구니\n (3) 할인 정보\n (-) 프로그램 종료\n (5) 배달 현황";
     static String introPromotion= "프로모션 정보\n (1) 코드스테이츠 수강생 프로모션\n (2) 어린이 프로모션\n (3) 선택 안함";
-    static String introCartBoard = " (1) 홈으로 돌아가기\n (2) 상품 삭제\n (3) 장바구니 비우기\n (4) 장바구니 상품 주문\n (5) 프로그램 종료";
+    static String introCartBoard = " (1) 홈으로 돌아가기\n (2) 상품 삭제\n (3) 장바구니 비우기\n (4) 장바구니 상품 주문\n (-) 프로그램 종료";
 
     static String[] displayCategoryOrder = {"햄버거","사이드","음료","옵션"};
     static Map<String, String> emoji = Map.of("햄버거","🍔","사이드","🍟","음료","🥤","옵션","🥫");
     static String inputError = "잘못 입력하였습니다.";
+    static String inputNumError = "사이의 숫자를 입력해 주세요.";
     static String dash = "-".repeat(50);
     static String cartTitle= "No  상품명         단가   할인금액    소비자가   수량    금액";
     static DecimalFormat df = new DecimalFormat("###,###");
@@ -99,5 +101,15 @@ public class PrintUtil {
 
         System.out.printf("(%d) 선택 안함",promotions.size()+1);
         System.out.println();
+    }
+    public static int printDeliveryInfo(){
+        System.out.println("배달 옵션을 선택하세요.");
+        int index = 0;
+        for(Delivery.TYPE type : Delivery.TYPE.values() ){
+            System.out.printf("(%d) %s %s원 ",type.getTypeID(),type.getDelivaryTypeName(),type.getDeliveryPrice());
+            System.out.println();
+            index++;
+        }
+        return index;
     }
 }

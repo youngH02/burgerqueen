@@ -16,7 +16,7 @@ public class Order {
 
     public Order(int orderId, CartService cart, ArrayList<Promotion> promotions ) {
         this.orderId = orderId;
-        this.cart = cart;
+        this.cart = new CartService(cart);
         this.promotions = promotions;
         addPromotion();
         this.paymentPrice = calcuatePaymentPrice();
@@ -44,6 +44,12 @@ public class Order {
     }
     private int calcuatePaymentPrice() {
         return cart.getCart().stream()
+                .mapToInt(item->item.getTotalPrice())
+                .sum();
+    }
+    public void setPaymentPrice() {
+        this.paymentPrice =
+         cart.getCart().stream()
                 .mapToInt(item->item.getTotalPrice())
                 .sum();
     }
